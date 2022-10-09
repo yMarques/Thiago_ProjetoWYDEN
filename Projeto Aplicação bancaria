@@ -1,0 +1,111 @@
+x=0
+soma=0
+rdeposito=0
+result=0
+rsaldo=0
+menuprincipal=0
+menuprincipall=0
+menucliente=0 
+menunaocliente=0
+saque=0
+saldo=0
+import os  
+import time 
+#MENU
+
+    
+while (menuprincipal!=4):
+    #menuprincipall()
+    os.system ("clear")
+    menuprincipal = int(input("############## Bem vindo ao pyBanking ############## \n \nDigite a opcao desejada \n \n1 - Acessar minha conta \n2 - Finalizar aplicação \n \n"))
+    os.system ("clear")
+    time.sleep(0.5)
+                                            #MENU CLIENTE DEPOSITO
+    if (menuprincipal==1):
+        log = open('log01.txt','w')
+        log.write("log de dados do sistema\n")
+        log.write("Seu saldo disponivel é R$ {}\n".format(rdeposito))
+        log.write("Você realizou o saque no valor de R$ {} \n \n \nSeu saldo disponivel é R$ {}\n.".format(saque, rdeposito))
+        log.write("Fim do log!\n")
+        log.close()
+
+        # Lendo o arquivo criado:
+        log = open('log01.txt','r')
+        for linha in log:
+            linha = linha.rstrip()
+            print (linha)
+        log.close()
+        os.system ("clear")
+        menucliente = int(input("############## Bem vindo ao pyBanking ############## \n \nDigite a opcao desejada \n \n1 - Deposito \n2 - Saque \n3 - Saldo \n4 - Voltar ao menu principal \n \n"))
+        if(menucliente==1):
+            if(saque==0):
+                os.system ("clear")
+                saldo = float(input("Digite o valor que deseja depositar \n \n"))
+                os.system ("clear")
+                soma=saldo+rdeposito
+                rdeposito+=saldo
+                print('Seu saldo atual é de R${}'.format(rdeposito))
+                time.sleep(3)
+                menucliente==0
+                os.system ("clear")
+              
+            elif(saque!=0):
+                os.system ("clear")
+                saldo = float(input("Digite o valor que deseja depositar \n \n"))
+                os.system ("clear")
+                soma=saque-rdeposito
+                rdeposito+=saldo
+                print('Seu saldo atual é de R${}'.format(rdeposito))
+                time.sleep(3)
+                menucliente==0
+                                            #MENU CLIENTE SAQUE
+        elif(menucliente==2):    
+            os.system ("clear")
+            saque = float(input("Digite o valor que deseja realizar o saque \n \n"))
+            result = saque - rdeposito
+            if(saque > rdeposito): 
+                os.system ("clear")
+                print ('Falha na operação! \n Voce não possui saldo suficiente para esse saque, por favor digite um valor valido')
+                time.sleep(3)
+                os.system ("clear")
+                menucliente==0
+            else:
+                sub = rdeposito - saque
+                rdeposito -= saque
+                os.system ("clear")
+                print('Realizado saque de R${}\n \nSeu saldo atual é de R${}'.format(saque,rdeposito))
+                time.sleep(3)
+                os.system ("clear")
+                rdeposito==0
+                                                #MENU CLIENTE SALDO                
+        elif(menucliente==3):
+            if (saque==0):
+                os.system ("clear")
+                print('Seu saldo atual é de R${}'.format(saldo))
+                time.sleep(3)
+                menucliente==0
+                os.system ("clear")
+            elif(saque!=0):
+                os.system ("clear")
+                print('Seu saldo atual é de R${}'.format(rdeposito))
+                time.sleep(3)
+                menucliente==0
+                                            #MENU CLIENTE VOLTAR AO MENU PRINCIPAL                
+        elif(menucliente==4):
+            os.system ("clear")
+            menucliente==0
+            
+        elif(menucliente>=5):
+            os.system ("clear")
+            print('Por favor digite uma opção válidaa')
+            time.sleep(3)
+            os.system ("clear")
+        
+    elif(menuprincipal==2):
+        print ('A aplicação foi finalizada')
+        break
+    if menuprincipal>=3:
+        os.system ("clear")
+        print('Por favor digite uma opção válida')
+        time.sleep(3)
+        os.system ("clear")
